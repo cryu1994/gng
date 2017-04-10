@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>great number game</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css")}}">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h1>Welcome to great number game</h1>
+                <p>I am thinking of number between 1 and 100</p>
+                <p>Take a Guess!!</p>
+
+                {% if guessedNum == 'was the number!' %}
+
+                    <div class="console_correct">
+                        <h2>{{ number }} {{ guessedNum }}</h2>
+                        <p>It took you {{ numberofguess }}  tries</p>
+                        <p>
+                            <form action="/reset" method="post">
+                                <input type="submit" name="reset" value="Play again!">
+                            </form>
+                        </p>
+                    </div>
+
+                    {% elif guessedNum != ' ' %}
+
+                    <div class="console_incorrect">
+                        <h2>{{guessedNum}}</h2>
+                    </div>
+                {% endif %}
+                <form action="/guess" method ="post">
+                    <input type="text" name="guess">
+                    <input type="submit" value="Guess!">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
